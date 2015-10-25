@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="syterialDemo">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>Material Design for AngularJS-Apps</title>
+
+		<link rel="stylesheet" href="app/css/syterial.css">
+
+		<link rel="stylesheet" href="app/css/vendor/github.css">
+		<link rel="stylesheet" href="app/css/demo.css">
+	</head>
+
+	<body ng-controller="demoCtrl">
+		<header>
+			<div class="navbar shadow fixed">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="navbar-mobile-toggle col-xs-2">
+							<nav-drawer-toggle ng-click="navDrawer = !navDrawer"></nav-drawer-toggle>
+						</div>
+						<div class="navbar-header col-xs-2 col-md-1">
+							<div class="navbar-brand">syTerial</div>
+						</div>
+						<ul class="navbar-collapse">
+							<li><a href ui-sref="getting-started">Getting Started</a></li>
+							<li class="dropdown" dropdown>
+								<a href class="dropdown-toggle">CSS <i class="mdi mdi-chevron-down"></i></a>
+								<ul class="dropdown-menu">
+									<li ng-repeat="c in cssNav" ui-sref="{{c.url}}">{{c.name}}</li>
+								</ul>
+							</li>
+							<li class="dropdown" dropdown>
+								<a href class="dropdown-toggle">Components <i class="mdi mdi-chevron-down"></i></a>
+								<ul class="dropdown-menu">
+									<li ng-repeat="c in componentsNav" ui-sref="{{c.url}}">{{c.name}}</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div id="main" class="container">
+			<div class="row">
+				<div class="col-xs-12" ui-view></div>
+			</div>
+		</div>
+
+		<footer id="footer" class="footer">
+			<div class="footer-inner text-center">
+				<p>Developed with &hearts; by <a href="https://sydev.de">syDev</a><p>
+			</div>
+		</footer>
+
+
+		<script src="app/js/vendor/angular.min.js"></script>
+		<script src="app/js/vendor/angular-ui-router.min.js"></script>
+		<script src="app/js/syterial.js"></script>
+
+		<script src="app/js/vendor/highlight.min.js"></script>
+		<script src="app/js/vendor/angular-highlightjs.min.js"></script>
+		<script src="app/js/vendor/lazy-scroll.min.js"></script>
+
+		<script src="app/js/app.js"></script>
+	</body>
+</html>

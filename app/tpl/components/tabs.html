@@ -1,0 +1,75 @@
+<section id="tabs" ng-controller="tabsCtrl">
+	<div class="row">
+		<div class="col-xs-12"><h3>Tabs</h3><hr/></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<tabs justified="true" animated="true">
+				<pane ng-repeat="p in panes" title="{{p.title}}" icon="{{p.icon}}">
+					{{p.content}}
+				</pane>
+			</tabs>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<h5>Settings</h5>
+			<code>&lt;tabs&gt;</code>
+			<ul>
+				<li>
+					<code>animated</code> <i>(Default: false)</i>: Apply a CSS fade transition to the tab panes.
+				</li>
+				<li>
+					<code>justified</code> <i>(Default: false)</i>: Make the tabs stretch at equal sizes to 
+					span the entire width.
+				</li>
+				<li>
+					<code>scrollable</code> <i>(Default: false)</i>: Make the tab content scrollable if 
+					specific height is exceeded. See <code>scrollable-height</code>.
+				</li>
+				<li>
+					<code>scrollable-height</code> <i>(Default: 300)</i>: Set the max-height-breakpoint for 
+					scrollable content. The unit is 'px'.
+				</li>
+			</ul>
+			<code>&lt;pane&gt;</code>
+			<ul>
+				<li>
+					<code>title</code> <i>(Default: 'Pane')</i>: Set the title for this pane.
+				</li>
+				<li>
+					<code>icon</code> <i>(Default: none)</i>: Set the icon next to the title of this pane. 
+					(CSS-class for the icon required)
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr/>
+	<tabs>
+		<pane title="HTML">
+<div hljs>
+<tabs justified="true" animated="true">
+  <pane ng-repeat="p in panes" title="{{p.title}}" icon="{{p.icon}}">
+    {{p.content}}
+  </pane>
+</tabs>
+</div>
+		</pane>
+		<pane title="JavaScript">
+<div hljs>
+angular.module('syterialDemo').controller('tabsCtrl', ['$scope', function ($scope) {
+  $scope.panes = [
+    {
+      title: 'Pane 1',
+      icon: 'mdi mdi-sunglasses',
+      content: 'Lorem ipsum Eiusmod sit deserunt ad officia sed officia esse nulla nostrud anim fugiat dolore est.'
+    },
+    {
+      title: 'Pane 2',
+      icon: 'mdi mdi-star-outline',
+      content: 'Lorem ipsum Aliquip velit cupidatat in dolore consequat et nostrud magna cupidatat exercitation consequat elit pariatur dolore nisi ad pariatur ut consectetur laborum commodo et aute eiusmod voluptate eiusmod deserunt tempor.'
+    }
+  ];
+}]);
+</div>
+		</pane>
+	</tabs>
+</section>

@@ -1,0 +1,15 @@
+<section id="icons" ng-controller="iconsCtrl">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Icons</h1>
+			<p></p>
+		</div>
+	</div>
+
+	<div class="icons-wrapper row" lazy-scroll="loadIcons()">
+		<div class="icons col-xs-12 col-md-6" ng-repeat="i in loadedIcons | filter:iconFilter as results">
+			<i class="mdi mdi-{{i}}"></i> <span>mdi-{{i}}</span>
+		</div>
+	</div>
+
+</section>

@@ -1,0 +1,61 @@
+<section id="tables" ng-init="hoverStatus = true">
+	<h1>Tables</h1>
+	<div class="col-xs-12 col-md-8">
+		<div class="mb-20">
+			<div class="form-group">
+				<div class="checkbox inline">
+					<input type="checkbox" id="toggleHoverTable" ng-model="hoverStatus"/>
+					<label for="toggleHoverTable">Hover Effects</label>
+				</div>
+			</div>
+		</div>
+		<table class="table" ng-class="{hover: hoverStatus}">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Column Heading</th>
+					<th>Column Heading</th>
+					<th>Column Heading</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+					<td>Column Content</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
