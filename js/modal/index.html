@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="modalDemo">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>syTerial - Modals</title>
+
+		<link rel="stylesheet" href="../../dist/css/syterial.css">
+	</head>
+
+	<body ng-controller="modalDemoCtrl">
+		<header class="navbar shadow">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="navbar-header">
+						<div class="navbar-brand">syTerial - Modals</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<button class="btn success" ng-click="open()">Open Modal</button>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!--<script src="../../dist/js/vendor/angular.min.js"></script>-->
+		<script src="//localhost/_ground/js/angular/angular.js"></script>
+		<script src="modalService.js"></script>
+		<script async>
+			angular.module('modalDemo', ['modalService'])
+				.controller('modalDemoCtrl', ['$scope', '$modal', function($scope, $modal) {
+					$scope.items = [1, 2, 3, 4, 5, 6];
+
+					$scope.open = function() {
+						$modal.open({
+							animation: true,
+							templateUrl: 'modal.html',
+							data: $scope.items
+						});
+					};
+				}]);
+		</script>
+
+	</body>
+</html>

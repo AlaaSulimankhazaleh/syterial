@@ -1,0 +1,30 @@
+.table {
+	background-color: transparent;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	margin-top: 24px;
+	margin-bottom: 24px;
+	width: 100%;
+	border-collapse: collapse;
+
+	&.table-responsive {
+		min-height: 0.01%;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	&.hover tbody tr:hover {
+		background: #E0E0E0;
+	}
+	td, th {
+		border-top: 1px solid rgba(0, 0, 0, 0.12);
+	  font-size: 14px;
+	  line-height: 20px;
+	  padding: 13px 16px 14px;
+	  vertical-align: middle;
+	}
+	>thead th, >thead td {
+		color: rgba(0, 0, 0, 0.38);
+	  font-size: 12px;
+	  vertical-align: middle;
+	  text-align: left;
+	}
+}

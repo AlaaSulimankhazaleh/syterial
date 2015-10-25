@@ -1,0 +1,77 @@
+.tabbable {
+	position: relative;
+
+	.nav-tabs {
+		position: relative;
+	  margin-bottom: 0;
+	  box-shadow: 0 16px 16px -16px;
+
+	  &:before, &:after {
+	  	display: table;
+  		content: " ";
+	  }
+	  &:after {
+	  	clear: both;
+	  }
+	  &.justified {
+	  	width: 100%;
+  		box-shadow: 0 16px 16px -16px;
+  		li {
+  			float: none;
+			  display: table-cell;
+			  width: 1%;
+			  text-align: center;
+  		}
+	  }
+
+	  li {
+	  	position: relative;
+		  display: block;
+		  float: left;
+		  margin-bottom: -1px;
+		  a {
+		  	display: block;
+			  color: #333;
+			  padding: 10px 15px;
+			  background-color: transparent;
+			  border: medium none;
+			  outline: medium none;
+			  text-decoration: none;
+		  }
+	  }
+
+	  .active-bar {
+		  position: absolute;
+		  height: 3px;
+		  background: @accentColor none repeat scroll 0 0;
+		  left: 0;
+		  bottom: 0;
+		  width: 0;
+		  .transition(all, .3s, ease);
+		}
+	}
+
+	.tab-content {
+		position: relative;
+		.tab-pane {
+			display: none;
+		  width: 100%;
+		  padding: 15px;
+		  z-index: 1;
+		  .transition(all, .2s, ease);
+		  &.fade {
+		  	display: block;
+		  	position: absolute;
+		  	opacity: 0;
+		  	z-index: -1;
+		  	&.in {
+		  		opacity: 1;
+		  		z-index: 1;
+		  	}
+		  }
+		  &.in {
+		  	display: block;
+		  }
+		}
+	}
+}

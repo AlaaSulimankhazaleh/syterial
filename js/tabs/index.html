@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="tabsDemo">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>syTerial - Tabs</title>
+
+		<link rel="stylesheet" href="../../dist/css/syterial.css">
+	</head>
+
+	<body ng-controller="tabsDemoCtrl">
+		<header class="navbar shadow">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="navbar-header">
+						<div class="navbar-brand">syTerial - Tabs</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+					<div class="form-group">
+						<div class="checkbox">
+							<input id="demoAnim" type="checkbox" ng-model="data.animated" />
+							<label for="demoAnim">Animated</label>
+						</div>
+						<div class="checkbox">
+							<input id="demoJust" type="checkbox" ng-model="data.justified" />
+							<label for="demoJust">Justified</label>
+						</div>
+						<div class="checkbox">
+							<input id="demoScroll" type="checkbox" ng-model="data.scrollable" />
+							<label for="demoScroll">Scrollable</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<tabs animated="data.animated" justified="data.justified" scrollable="data.scrollable">
+						<pane ng-repeat="p in panes" title="{{p.title}}" icon="{{p.icon}}">
+							{{p.content}}
+						</pane>
+					</tabs>
+					<p>Test</p>
+				</div>
+			</div>
+		</div>
+
+
+
+		<script src="../../dist/js/vendor/angular.min.js"></script>
+		<script src="tabs.js"></script>
+		<script>
+			angular.module('tabsDemo', ['tabs'])
+				.controller('tabsDemoCtrl', ['$scope', function($scope) {
+					$scope.panes = [
+				    {
+				      title: 'Pane 1',
+				      icon: 'mdi mdi-sunglasses',
+				      content: 'Lorem ipsum Eiusmod sit deserunt ad officia sed officia esse nulla nostrud anim fugiat dolore est.'
+				    },
+				    {
+				      title: 'Pane 2',
+				      icon: 'mdi mdi-star-outline',
+				      content: 'Lorem ipsum Aliquip velit cupidatat in dolore consequat et nostrud magna cupidatat exercitation consequat elit pariatur dolore nisi ad pariatur ut consectetur laborum commodo et aute eiusmod voluptate eiusmod deserunt tempor. Lorem ipsum Amet ullamco Excepteur proident ea sint magna est nulla elit voluptate laboris eiusmod officia ut qui consectetur pariatur aliquip aliquip irure anim laborum nisi qui cupidatat consequat Ut ad sed aliqua nulla nisi laborum nisi laborum anim in. Lorem ipsum Duis id magna reprehenderit in sint cupidatat mollit Duis aliquip do ea fugiat sit eiusmod ullamco ut laboris irure et. Lorem ipsum Tempor consequat anim magna quis culpa dolor exercitation sit dolore et pariatur aute incididunt nisi quis commodo aliqua do dolore dolor culpa sunt reprehenderit ullamco adipisicing dolore in irure nostrud irure cupidatat quis Duis in. Lorem ipsum Qui ut in est Duis commodo aliqua Excepteur id in fugiat aliquip reprehenderit officia culpa sunt reprehenderit in irure dolore aute sint Ut ullamco. Lorem ipsum In eu incididunt occaecat ut eiusmod nisi ut voluptate culpa dolor dolor cupidatat commodo eiusmod eu esse eu velit incididunt sunt tempor eiusmod fugiat consequat sint. Lorem ipsum Quis commodo in dolore nostrud dolore in incididunt dolore ut cupidatat esse labore Ut Duis minim voluptate enim eu officia. Lorem ipsum Tempor officia ex reprehenderit aliquip aliquip irure mollit reprehenderit dolor labore occaecat Ut nostrud tempor deserunt Duis consectetur irure dolor quis velit minim in voluptate culpa aliqua in ea in eu sint Duis culpa consectetur elit in in.'
+				    }
+				  ];
+
+				  $scope.data = {
+				  	animated: true,
+				  	justified: false,
+				  	scrollable: false,
+				  	scrollableHeight: 300
+				  };
+				}]);
+		</script>
+
+	</body>
+</html>

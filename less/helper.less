@@ -1,0 +1,33 @@
+.inline {
+  display: inline-block;
+  margin-right: 20px;
+}
+.mb-20 {
+	margin-bottom: 20px;
+}
+.mb(@pixels: 10px) {
+	margin-bottom: @pixels;
+}
+.transition(@props: all, @duration: .3s, @timingFunc: linear, @delay: 0s) {
+	-webkit-transition: @props @duration @timingFunc @delay;
+		 -moz-transition: @props @duration @timingFunc @delay;
+		 	-ms-transition: @props @duration @timingFunc @delay;
+		 	 -o-transition: @props @duration @timingFunc @delay;
+		 	 		transition: @props @duration @timingFunc @delay;
+}
+
+.scale(@val) {
+	-webkit-transform: scale(@val);
+		 -moz-transform: scale(@val);
+		  -ms-transform: scale(@val);
+		   -o-transform: scale(@val);
+					transform: scale(@val);
+}
+
+.animation(@animation, @duration, @easing) {
+	-webkit-animation: @animation @duration @easing;
+	   -moz-animation: @animation @duration @easing;
+	    -ms-animation: @animation @duration @easing;
+	     -o-animation: @animation @duration @easing;
+					animation: @animation @duration @easing;
+}
