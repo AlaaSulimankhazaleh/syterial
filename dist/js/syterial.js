@@ -1,328 +1,199 @@
-angular.module('syterial', ['collapse', 'convertToNumber', 'dropdown', 'mdInput', 'modal', 'navDrawerToggle', 'ripple', 'tabs']);'use strict';
+"use strict";
 
-angular.module('collapse', [])
-	.directive('collapse', ['$timeout', function($timeout) {
+angular.module("syTerial", [ "collapse", "convertToNumber", "dropdown", "mdInput", "modal", "navDrawerToggle", "ripple", "tabs" ]), 
+angular.module("collapse", []).directive("collapse", [ "$timeout", function(a) {
     return {
-      restrict: 'A',
-      transclude: true,
-      replace: true,
-      template: '<div class="collapse"><div ng-transclude></div></div>',
-      link: function(scope, element, attrs) {
-        scope.$watch(attrs.collapse, function(isExpanded) {
-          $timeout(function() {
-            element.css('height', isExpanded ? element.children()[0].offsetHeight + 'px' : '0');
-          }, 10);
-        });
-      }
-    };
-  }]);'use strict';
-
-angular.module('convertToNumber', [])
-	.directive('convertToNumber', function() {
-    return {
-      require: 'ngModel',
-      link: function(scope, element, attrs, ngModel) {
-        ngModel.$parsers.push(function(val) {
-          return parseInt(val, 10);
-        });
-        ngModel.$formatters.push(function(val) {
-          return '' + val;
-        });
-      }
-    };
-  });'use strict';
-
-angular.module('dropdown', [])
-	.directive('dropdown', ['$window', function($window) {
-    return {
-      restrict: 'A',
-      link: function(scope, ele) {
-        var eleRect = ele[0].getBoundingClientRect();
-
-        ele.parent().css({
-          position: 'relative',
-          'z-index': 100
-        });
-
-        if ($window.innerWidth < eleRect.left + 160) {
-          angular.element(ele[0].getElementsByClassName('dropdown-menu')).addClass('toLeft');
+        restrict: "A",
+        transclude: !0,
+        replace: !0,
+        template: '<div class="collapse"><div ng-transclude></div></div>',
+        link: function(b, c, d) {
+            b.$watch(d.collapse, function(b) {
+                a(function() {
+                    c.css("height", b ? c.children()[0].offsetHeight + "px" : "0");
+                }, 10);
+            });
         }
-
-        function hide(event) {
-          var target = event.target,
-            check;
-
-          while (target) {
-            check = target.getAttribute('dropdown');
-            if (check !== null) return;
-            target = target.parentElement;
-          }
-
-          var dropdowns = document.querySelectorAll('[dropdown]');
-          for (var i = 0, len = dropdowns.length; i < len; i++) {
-            dropdowns[i].classList.remove('open');
-          }
+    };
+} ]), angular.module("convertToNumber", []).directive("convertToNumber", function() {
+    return {
+        require: "ngModel",
+        link: function(a, b, c, d) {
+            d.$parsers.push(function(a) {
+                return parseInt(a, 10);
+            }), d.$formatters.push(function(a) {
+                return "" + a;
+            });
         }
-
-        ele[0].addEventListener('click', function() {
-          ele.toggleClass('open');
-        });
-
-        document.addEventListener('click', function(e) {
-          hide(e);
-        });
-      }
     };
-  }]);'use strict';
-
-angular.module('mdInput', [])
-	.directive('mdInput', ['$timeout', function($timeout) {
+}), angular.module("dropdown", []).directive("dropdown", [ "$window", function(a) {
     return {
-      restrict: 'C',
-      link: function(scope, ele) {
-        if (ele.val() !== '') {
-          ele.addClass('filled');
-        }
-
-        ele[0].onkeyup = function() {
-          if (this.value !== '') {
-            ele.addClass('filled');
-          } else {
-            ele.removeClass('filled');
-          }
-        };
-
-        ele[0].onfocus = function() {
-          var parent = ele.parent();
-          parent.append('<span class="focusbar"></span>');
-          $timeout(function() {
-            parent.find('span').addClass('show');
-          }, 100);
-        };
-
-        ele[0].onblur = function() {
-          var parent = ele.parent();
-          parent.find('span').removeClass('show');
-          $timeout(function() {
-            parent.find('span').remove();
-          }, 500);
-        };
-      }
-    };
-  }]);'use strict';
-
-angular.module('modal', [])
-  .factory('$modal', ['$document', function ($document) {
-    var obj = {},
-    body    = $document.find('body');
-
-    obj.open = function(options) {
-      
-      console.log(options);
-    };
-
-    return obj;
-  }]);'use strict';
-
-angular.module('navDrawerToggle', [])
-	.directive('navDrawerToggle', [function() {
-    return {
-      restrict: 'E',
-      replace: true,
-      link: function(scope, ele) {
-        ele[0].addEventListener('click', function() {
-          ele.toggleClass('active');
-        });
-      },
-      template: '<button class="hamburger-menu"></div>'
-    };
-  }]);'use strict';
-
-angular.module('ripple', [])
-	.directive('ripple', [function() {
-    return {
-      restrict: 'AC',
-      scope: {
-        ripple: '@'
-      },
-      link: function(scope, ele) {
-        var rect, ripple, top, left, color;
-
-        ele.css({
-          overflow: 'hidden',
-          position: 'relative'
-        });
-
-        if (scope.ripple != 'false') {
-          ele[0].addEventListener('click', function(event) {
-            rect = event.target.getBoundingClientRect();
-            ripple = ele.find('span');
-            if (ripple.length === 0 || !ripple.hasClass('ripple')) {
-              var wh = Math.max(rect.width, rect.height);
-              ripple = angular.element(document.createElement('span'));
-              ripple.addClass('ripple');
-              ripple.css({
-                width: wh + 'px',
-                height: wh + 'px'
-              });
-              ele.append(ripple);
+        restrict: "A",
+        link: function(b, c) {
+            function d(a) {
+                for (var b, c = a.target; c; ) {
+                    if (b = c.getAttribute("dropdown"), null !== b) return;
+                    c = c.parentElement;
+                }
+                for (var d = document.querySelectorAll("[dropdown]"), e = 0, f = d.length; f > e; e++) d[e].classList.remove("open");
             }
-            ripple.removeClass('show');
-            top = event.layerY - ripple[0].clientHeight / 2;
-            left = event.layerX - ripple[0].clientWidth / 2;
-            if (scope.ripple != 'false' && scope.ripple === '') {
-              color = getComputedStyle(ele[0]).color;
-            } else {
-              color = scope.ripple;
-            }
-            ripple.css({
-              top: top + 'px',
-              left: left + 'px',
-              background: color
+            var e = c[0].getBoundingClientRect();
+            c.parent().css({
+                position: "relative",
+                "z-index": 100
+            }), a.innerWidth < e.left + 160 && angular.element(c[0].getElementsByClassName("dropdown-menu")).addClass("toLeft"), 
+            c[0].addEventListener("click", function() {
+                c.toggleClass("open");
+            }), document.addEventListener("click", function(a) {
+                d(a);
             });
-            ripple.addClass('show');
-          });
         }
-      }
     };
-  }]);'use strict';
-
-angular.module('tabs', [])
-	.directive('tabs', [function() {
+} ]), angular.module("mdInput", []).directive("mdInput", [ "$timeout", function(a) {
     return {
-      require: 'ripple',
-      restrict: 'E',
-      transclude: true,
-      scope: {
-        animated: '=',
-        justified: '=',
-        scrollable: '=',
-        scrollableHeight: '@'
-      },
-      controller: ['$scope', '$element', '$timeout', function($scope, $element, $timeout) {
-        var panes = this.panes = $scope.panes = [];
-
-        this.animated = $scope.animated;
-        this.scrollable = $scope.scrollable;
-        $scope.scrollableHeight = this.scrollableHeight = $scope.scrollableHeight || 400;
-        $scope.screenWidth = window.innerWidth;
-
-        $scope.$watchGroup(['animated', 'scrollable', 'scrollableHeight'], function(newValue) {
-          $scope.$broadcast('attrChange', newValue);
-        });
-
-        $scope.$watch('panes', function(newValue) {
-          $scope.$broadcast('panesChange', newValue);
-        });
-
-        window.onresize = function() {
-          $scope.screenWidth = window.innerWidth;
-          $scope.$apply();
-        };
-
-        $scope.select = this.select = function(pane, event) {
-          angular.forEach(panes, function(pane) {
-            pane.selected = false;
-          });
-          pane.selected = true;
-
-          var activeBar = angular.element($element[0].querySelector('.active-bar'));
-          if (event) {
-            var ele       = event.target.getBoundingClientRect(),
-              parent      = event.target.parentElement.parentElement,
-              parentRect  = parent.getBoundingClientRect(),
-              left        = ele.left - parentRect.left + parent.offsetLeft + 'px',
-              width       = ele.width + 'px';
-
-            activeBar.css({
-              width: width,
-              left: left
-            });
-          } else {
-            $timeout(function() {
-              var te        = $element[0].querySelector('.pane-links'),
-                teRect      = te.getBoundingClientRect(),
-                parent      = te.parentElement.parentElement,
-                parentRect  = parent.getBoundingClientRect(),
-                left        = teRect.left - parentRect.left + parent.offsetLeft + 'px',
-                width       = teRect.width + 'px';
-
-              activeBar.css({
-                width: width,
-                left: left
-              });
-            }, 10);
-          }
-        };
-
-        this.addPane = function(pane) {
-          if (panes.length === 0) {
-            $scope.select(pane);
-          }
-          panes.push(pane);
-        };
-      }],
-      template: '<div class="tabbable"><ul class="nav nav-tabs" ng-class="{justified: justified && screenWidth >= 768}"><li ng-repeat="pane in panes" ng-class="{active: pane.selected}" ripple="#ffeb3b"><a href="" ng-click="select(pane, $event)" class="pane-links">{{pane.title}} <i ng-if="pane.icon" ng-class="pane.icon"></i></a></li><div class="active-bar"></div></ul><div class="tab-content" ng-transclude></div></div>'
+        restrict: "C",
+        link: function(b, c) {
+            "" !== c.val() && c.addClass("filled"), c[0].onkeyup = function() {
+                "" !== this.value ? c.addClass("filled") : c.removeClass("filled");
+            }, c[0].onfocus = function() {
+                var b = c.parent();
+                b.append('<span class="focusbar"></span>'), a(function() {
+                    b.find("span").addClass("show");
+                }, 100);
+            }, c[0].onblur = function() {
+                var b = c.parent();
+                b.find("span").removeClass("show"), a(function() {
+                    b.find("span").remove();
+                }, 500);
+            };
+        }
     };
-  }])
-  .directive('pane', ['$timeout', function ($timeout) {
+} ]), angular.module("modal", []).factory("$modal", [ "$document", function(a) {
+    var b = {};
+    a.find("body");
+    return b.open = function(a) {
+        console.log(a);
+    }, b;
+} ]), angular.module("navDrawerToggle", []).directive("navDrawerToggle", [ function() {
     return {
-      require: '^tabs',
-      restrict: 'E',
-      replace: true,
-      transclude: true,
-      scope: {
-        title: '@',
-        icon: '@'
-      },
-      link: function(scope, ele, attrs, tabsCtrl) {
-        if (angular.isUndefined(scope.title)) scope.title = 'Pane';
-        if (angular.isUndefined(scope.icon)) scope.icon = false;
-
-        tabsCtrl.addPane(scope);
-
-        function setAnim(bool) {
-          scope.anim = bool;
-          var tabPanes = angular.element(document.querySelectorAll('.tab-pane')),
-            heights = [],
-            maxHeight;
-
-          $timeout(function() {
-            if (bool) {
-              for (var i = 0; i < tabPanes.length; i++) {
-                heights.push(tabPanes[i].clientHeight);
-              }
-              maxHeight = Math.max.apply(Math, heights);
-              tabPanes.parent().css('height', maxHeight + 'px');
-            } else {
-              tabPanes.parent().css('height', '');
-            }
-          }, 10);
-        }
-
-        function setScrollable(bool, height) {
-          var tabPanes = angular.element(document.querySelectorAll('.tab-pane'));
-          if (bool) {
-            tabPanes.css({
-              maxHeight: height + 'px',
-              overflowY: 'auto'
+        restrict: "E",
+        replace: !0,
+        link: function(a, b) {
+            b[0].addEventListener("click", function() {
+                b.toggleClass("active");
             });
-          } else {
-            tabPanes.css({
-              maxHeight: '',
-              overflowY: ''
-            });
-          }
-        }
-
-        scope.$on('attrChange', function(e, values) {
-          setAnim(values[0]);
-          setScrollable(values[1], values[2]);
-        });
-
-        setAnim(tabsCtrl.animated);
-        setScrollable(tabsCtrl.scrollable);
-      },
-      template: '<div class="tab-pane" ng-class="{fade: anim, in: selected}" ng-transclude></div>'
+        },
+        template: '<button class="hamburger-menu"></div>'
     };
-  }])
+} ]), angular.module("ripple", []).directive("ripple", [ function() {
+    return {
+        restrict: "AC",
+        scope: {
+            ripple: "@"
+        },
+        link: function(a, b) {
+            var c, d, e, f, g;
+            b.css({
+                overflow: "hidden",
+                position: "relative"
+            }), "false" != a.ripple && b[0].addEventListener("click", function(h) {
+                if (c = h.target.getBoundingClientRect(), d = b.find("span"), 0 === d.length || !d.hasClass("ripple")) {
+                    var i = Math.max(c.width, c.height);
+                    d = angular.element(document.createElement("span")), d.addClass("ripple"), d.css({
+                        width: i + "px",
+                        height: i + "px"
+                    }), b.append(d);
+                }
+                d.removeClass("show"), e = h.layerY - d[0].clientHeight / 2, f = h.layerX - d[0].clientWidth / 2, 
+                g = "false" != a.ripple && "" === a.ripple ? getComputedStyle(b[0]).color : a.ripple, 
+                d.css({
+                    top: e + "px",
+                    left: f + "px",
+                    background: g
+                }), d.addClass("show");
+            });
+        }
+    };
+} ]), angular.module("tabs", []).directive("tabs", [ function() {
+    return {
+        require: "ripple",
+        restrict: "E",
+        transclude: !0,
+        scope: {
+            animated: "=",
+            justified: "=",
+            scrollable: "=",
+            scrollableHeight: "@"
+        },
+        controller: [ "$scope", "$element", "$timeout", function(a, b, c) {
+            var d = this.panes = a.panes = [];
+            this.animated = a.animated, this.scrollable = a.scrollable, a.scrollableHeight = this.scrollableHeight = a.scrollableHeight || 400, 
+            a.screenWidth = window.innerWidth, a.$watchGroup([ "animated", "scrollable", "scrollableHeight" ], function(b) {
+                a.$broadcast("attrChange", b);
+            }), a.$watch("panes", function(b) {
+                a.$broadcast("panesChange", b);
+            }), window.onresize = function() {
+                a.screenWidth = window.innerWidth, a.$apply();
+            }, a.select = this.select = function(a, e) {
+                angular.forEach(d, function(a) {
+                    a.selected = !1;
+                }), a.selected = !0;
+                var f = angular.element(b[0].querySelector(".active-bar"));
+                if (e) {
+                    var g = e.target.getBoundingClientRect(), h = e.target.parentElement.parentElement, i = h.getBoundingClientRect(), j = g.left - i.left + h.offsetLeft + "px", k = g.width + "px";
+                    f.css({
+                        width: k,
+                        left: j
+                    });
+                } else c(function() {
+                    var a = b[0].querySelector(".pane-links"), c = a.getBoundingClientRect(), d = a.parentElement.parentElement, e = d.getBoundingClientRect(), g = c.left - e.left + d.offsetLeft + "px", h = c.width + "px";
+                    f.css({
+                        width: h,
+                        left: g
+                    });
+                }, 10);
+            }, this.addPane = function(b) {
+                0 === d.length && a.select(b), d.push(b);
+            };
+        } ],
+        template: '<div class="tabbable"><ul class="nav nav-tabs" ng-class="{justified: justified && screenWidth >= 768}"><li ng-repeat="pane in panes" ng-class="{active: pane.selected}" ripple="#ffeb3b"><a href="" ng-click="select(pane, $event)" class="pane-links">{{pane.title}} <i ng-if="pane.icon" ng-class="pane.icon"></i></a></li><div class="active-bar"></div></ul><div class="tab-content" ng-transclude></div></div>'
+    };
+} ]).directive("pane", [ "$timeout", function(a) {
+    return {
+        require: "^tabs",
+        restrict: "E",
+        replace: !0,
+        transclude: !0,
+        scope: {
+            title: "@",
+            icon: "@"
+        },
+        link: function(b, c, d, e) {
+            function f(c) {
+                b.anim = c;
+                var d, e = angular.element(document.querySelectorAll(".tab-pane")), f = [];
+                a(function() {
+                    if (c) {
+                        for (var a = 0; a < e.length; a++) f.push(e[a].clientHeight);
+                        d = Math.max.apply(Math, f), e.parent().css("height", d + "px");
+                    } else e.parent().css("height", "");
+                }, 10);
+            }
+            function g(a, b) {
+                var c = angular.element(document.querySelectorAll(".tab-pane"));
+                a ? c.css({
+                    maxHeight: b + "px",
+                    overflowY: "auto"
+                }) : c.css({
+                    maxHeight: "",
+                    overflowY: ""
+                });
+            }
+            angular.isUndefined(b.title) && (b.title = "Pane"), angular.isUndefined(b.icon) && (b.icon = !1), 
+            e.addPane(b), b.$on("attrChange", function(a, b) {
+                f(b[0]), g(b[1], b[2]);
+            }), f(e.animated), g(e.scrollable);
+        },
+        template: '<div class="tab-pane" ng-class="{fade: anim, in: selected}" ng-transclude></div>'
+    };
+} ]);

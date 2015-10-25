@@ -1,1 +1,1 @@
-angular.module('syterial', ['collapse', 'convertToNumber', 'dropdown', 'mdInput', 'modal', 'navDrawerToggle', 'ripple', 'tabs']);
+angular.module('syTerial', ['collapse', 'convertToNumber', 'dropdown', 'mdInput', 'modal', 'navDrawerToggle', 'ripple', 'tabs']);
