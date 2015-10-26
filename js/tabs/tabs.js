@@ -24,6 +24,10 @@ angular.module('tabs', [])
           $scope.$broadcast('attrChange', newValue);
         });
 
+        $scope.$watch('justified', function(newValue) {
+          $scope.setActiveBar(false);
+        });
+
         $scope.$watch('panes', function(newValue) {
           $scope.$broadcast('panesChange', newValue);
         });
@@ -39,14 +43,29 @@ angular.module('tabs', [])
           });
           pane.selected = true;
 
+          if (event) {
+            $scope.setActiveBar(event);
+          }
+        };
+
+        $scope.setActiveBar = function(event) {
           var activeBar = angular.element($element[0].querySelector('.active-bar'));
           if (event) {
-            var ele       = event.target.getBoundingClientRect(),
-              parent      = event.target.parentElement.parentElement,
+            var target = event.target;
+
+            if (event.target.nodeName !== 'A') {
+              while (target) {
+                if (target.nodeName === 'A') break;
+                target = target.parentNode;
+              }
+            }
+
+            var ele       = target.getBoundingClientRect(),
+              parent      = target.parentElement.parentElement,
               parentRect  = parent.getBoundingClientRect(),
               left        = ele.left - parentRect.left + parent.offsetLeft + 'px',
               width       = ele.width + 'px';
-
+            
             activeBar.css({
               width: width,
               left: left

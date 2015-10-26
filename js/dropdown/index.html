@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="dropdownDemo">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>syTerial - Dropdown</title>
+
+		<link rel="stylesheet" href="../../dist/css/syterial.min.css">
+	</head>
+
+	<body>
+		<header class="navbar shadow">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="navbar-header">
+						<div class="navbar-brand">syTerial - Dropdown</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="inline" dropdown>
+						<button class="btn success">Dropdown <i class="mdi mdi-chevron-down"></i></button>
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+					</div>
+					<div class="inline" dropdown>
+						<button class="btn warning">Dropdown <i class="mdi mdi-chevron-down"></i></button>
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+					</div>
+					<div class="inline" dropdown>
+						<button class="btn danger">Dropdown <i class="mdi mdi-chevron-down"></i></button>
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<script src="../../../gh-pages/app/js/vendor/angular.min.js"></script>
+		<script src="dropdown.js"></script>
+		<script>
+			angular.module('dropdownDemo', ['dropdown']);
+		</script>
+
+	</body>
+</html>

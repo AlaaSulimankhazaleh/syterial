@@ -26,26 +26,34 @@ angular.module("collapse", []).directive("collapse", [ "$timeout", function(a) {
             });
         }
     };
-}), angular.module("dropdown", []).directive("dropdown", [ "$window", function(a) {
+}), angular.module("dropdown", []).directive("dropdown", [ "$window", "$document", function(a, b) {
     return {
         restrict: "A",
-        link: function(b, c) {
-            function d(a) {
-                for (var b, c = a.target; c; ) {
-                    if (b = c.getAttribute("dropdown"), null !== b) return;
-                    c = c.parentElement;
+        link: function(c, d) {
+            function e(a) {
+                for (var b, c, d = a.target, e = document.querySelectorAll("[dropdown]"); d; ) {
+                    if (b = d.getAttribute("dropdown"), c = d.classList.contains("dropdown-menu"), null !== b) {
+                        for (var f = 0, g = e.length; g > f; f++) e[f].classList.remove("open");
+                        return void d.classList.add("open");
+                    }
+                    if (c) {
+                        for (var f = 0, g = e.length; g > f; f++) e[f].classList.remove("open");
+                        return;
+                    }
+                    d = d.parentElement;
                 }
-                for (var d = document.querySelectorAll("[dropdown]"), e = 0, f = d.length; f > e; e++) d[e].classList.remove("open");
+                for (var f = 0, g = e.length; g > f; f++) e[f].classList.remove("open");
             }
-            var e = c[0].getBoundingClientRect();
-            c.parent().css({
+            var f = d[0].getBoundingClientRect();
+            d.parent().css({
                 position: "relative",
                 "z-index": 100
-            }), a.innerWidth < e.left + 160 && angular.element(c[0].getElementsByClassName("dropdown-menu")).addClass("toLeft"), 
-            c[0].addEventListener("click", function() {
-                c.toggleClass("open");
-            }), document.addEventListener("click", function(a) {
-                d(a);
+            }), d.addClass("dropdown"), d.children()[0].classList.add("dropdown-toggle"), d.children()[1].classList.add("dropdown-menu"), 
+            a.innerWidth < f.left + 160 && angular.element(d[0].getElementsByClassName("dropdown-menu")).addClass("toLeft"), 
+            d.on("click", function() {
+                d.toggleClass("open");
+            }), b.on("click", function(a) {
+                e(a);
             });
         }
     };
@@ -130,24 +138,29 @@ angular.module("collapse", []).directive("collapse", [ "$timeout", function(a) {
             this.animated = a.animated, this.scrollable = a.scrollable, a.scrollableHeight = this.scrollableHeight = a.scrollableHeight || 400, 
             a.screenWidth = window.innerWidth, a.$watchGroup([ "animated", "scrollable", "scrollableHeight" ], function(b) {
                 a.$broadcast("attrChange", b);
+            }), a.$watch("justified", function(b) {
+                a.setActiveBar(!1);
             }), a.$watch("panes", function(b) {
                 a.$broadcast("panesChange", b);
             }), window.onresize = function() {
                 a.screenWidth = window.innerWidth, a.$apply();
-            }, a.select = this.select = function(a, e) {
+            }, a.select = this.select = function(b, c) {
                 angular.forEach(d, function(a) {
                     a.selected = !1;
-                }), a.selected = !0;
-                var f = angular.element(b[0].querySelector(".active-bar"));
-                if (e) {
-                    var g = e.target.getBoundingClientRect(), h = e.target.parentElement.parentElement, i = h.getBoundingClientRect(), j = g.left - i.left + h.offsetLeft + "px", k = g.width + "px";
-                    f.css({
-                        width: k,
-                        left: j
+                }), b.selected = !0, c && a.setActiveBar(c);
+            }, a.setActiveBar = function(a) {
+                var d = angular.element(b[0].querySelector(".active-bar"));
+                if (a) {
+                    var e = a.target;
+                    if ("A" !== a.target.nodeName) for (;e && "A" !== e.nodeName; ) e = e.parentNode;
+                    var f = e.getBoundingClientRect(), g = e.parentElement.parentElement, h = g.getBoundingClientRect(), i = f.left - h.left + g.offsetLeft + "px", j = f.width + "px";
+                    d.css({
+                        width: j,
+                        left: i
                     });
                 } else c(function() {
-                    var a = b[0].querySelector(".pane-links"), c = a.getBoundingClientRect(), d = a.parentElement.parentElement, e = d.getBoundingClientRect(), g = c.left - e.left + d.offsetLeft + "px", h = c.width + "px";
-                    f.css({
+                    var a = b[0].querySelector(".pane-links"), c = a.getBoundingClientRect(), e = a.parentElement.parentElement, f = e.getBoundingClientRect(), g = c.left - f.left + e.offsetLeft + "px", h = c.width + "px";
+                    d.css({
                         width: h,
                         left: g
                     });
