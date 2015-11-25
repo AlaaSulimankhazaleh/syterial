@@ -1,0 +1,9 @@
+@colors: bloodOrange, orange, dullOrange, amber, sunflower, yellow, lime, lightGreen, emerald, green, nephritis, teal, greenSea, turqoise, cyan, lightBlue, river, blue, belize, indigo, deepPurple, purple, plum, amethyst, pink, red, alizarin, pomegranate, pumpkin, brown, midnightBlue, asphalt, gunMetal, asbestos, grey, concrete, silver, clouds, paper, white, black;
+
+
+.colorLoop (@i) when (@i > 0) {
+  @name: extract(@colors, @i);
+  .bg-@{name} {background: @@name}
+  .colorLoop((@i - 1));
+}
+.colorLoop(length(@colors));

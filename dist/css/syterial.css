@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
 /* COLORS */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 * {
   box-sizing: border-box;
   margin: 0;
@@ -4874,6 +4874,9 @@ pre code {
 .btn::-moz-focus-inner {
   border: 0;
 }
+.btn:focus {
+  outline: 0;
+}
 .btn:hover {
   box-shadow: 0 1px 13px rgba(0, 0, 0, 0.15), 0px 1px 13px 1px rgba(0, 0, 0, 0.15);
 }
@@ -4891,7 +4894,7 @@ pre code {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 .btn.success {
-  color: #ffffff;
+  color: #fff;
   background: #4caf50;
 }
 .btn.success:hover,
@@ -4900,7 +4903,7 @@ pre code {
   background: #4caf50;
 }
 .btn.warning {
-  color: #ffffff;
+  color: #fff;
   background: #ffc107;
 }
 .btn.warning:hover,
@@ -4909,7 +4912,7 @@ pre code {
   background: #ffc107;
 }
 .btn.danger {
-  color: #ffffff;
+  color: #fff;
   background: #f44336;
 }
 .btn.danger:hover,
@@ -4972,7 +4975,7 @@ pre code {
   vertical-align: middle;
 }
 .card {
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.06), 0px 0px 3px rgba(0, 0, 0, 0.18), 0px 1px 3px rgba(0, 0, 0, 0.18);
   display: flex;
   margin-top: 24px;
@@ -5010,6 +5013,133 @@ pre code {
 .card .card-action-btn {
   margin: 6px 8px;
   white-space: nowrap;
+}
+.bg-black {
+  background: #000;
+}
+.bg-white {
+  background: #fff;
+}
+.bg-paper {
+  background: #efefef;
+}
+.bg-clouds {
+  background: #ecf0f1;
+}
+.bg-silver {
+  background: #bdc3c7;
+}
+.bg-concrete {
+  background: #95a5a6;
+}
+.bg-grey {
+  background: #9e9e9e;
+}
+.bg-asbestos {
+  background: #7f8c8d;
+}
+.bg-gunMetal {
+  background: #607d8b;
+}
+.bg-asphalt {
+  background: #34495e;
+}
+.bg-midnightBlue {
+  background: #2c3e50;
+}
+.bg-brown {
+  background: #795548;
+}
+.bg-pumpkin {
+  background: #d35400;
+}
+.bg-pomegranate {
+  background: #c0392b;
+}
+.bg-alizarin {
+  background: #e74c3c;
+}
+.bg-red {
+  background: #f44336;
+}
+.bg-pink {
+  background: #e91e63;
+}
+.bg-amethyst {
+  background: #9b59b6;
+}
+.bg-plum {
+  background: #8e44ad;
+}
+.bg-purple {
+  background: #9c27b0;
+}
+.bg-deepPurple {
+  background: #673ab7;
+}
+.bg-indigo {
+  background: #3f51b5;
+}
+.bg-belize {
+  background: #2980b9;
+}
+.bg-blue {
+  background: #2196f3;
+}
+.bg-river {
+  background: #3498db;
+}
+.bg-lightBlue {
+  background: #03a9f4;
+}
+.bg-cyan {
+  background: #00bcd4;
+}
+.bg-turqoise {
+  background: #1abc9c;
+}
+.bg-greenSea {
+  background: #16a085;
+}
+.bg-teal {
+  background: #009688;
+}
+.bg-nephritis {
+  background: #27ae60;
+}
+.bg-green {
+  background: #4caf50;
+}
+.bg-emerald {
+  background: #2ecc71;
+}
+.bg-lightGreen {
+  background: #8bc34a;
+}
+.bg-lime {
+  background: #cddc39;
+}
+.bg-yellow {
+  background: #ffeb3b;
+}
+.bg-sunflower {
+  background: #f1c40f;
+}
+.bg-amber {
+  background: #ffc107;
+}
+.bg-dullOrange {
+  background: #f39c12;
+}
+.bg-orange {
+  background: #ff9800;
+}
+.bg-bloodOrange {
+  background: #ff5722;
+}
+.dropdown {
+  display: inline-block;
+  margin-bottom: 10px;
 }
 .dropdown .dropdown-menu {
   position: absolute;
@@ -5211,7 +5341,7 @@ textarea.md-input:focus + label {
   position: fixed;
   top: 0px;
   width: 100%;
-  z-index: 100;
+  z-index: 101;
 }
 .navbar.fixed .container {
   margin: 0px auto;
@@ -5242,6 +5372,9 @@ textarea.md-input:focus + label {
     display: none;
   }
 }
+.navbar .navbar-collapse .dropdown {
+  margin-bottom: 0;
+}
 .navbar .navbar-collapse .dropdown .dropdown-menu {
   margin: 50px 0 0 0;
 }
@@ -5254,7 +5387,7 @@ textarea.md-input:focus + label {
 .navbar .navbar-collapse li a {
   text-decoration: none;
   outline: none;
-  color: #ffffff;
+  color: #fff;
 }
 .ripple {
   position: absolute;
